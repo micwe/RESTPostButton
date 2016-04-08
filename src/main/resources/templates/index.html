@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css"/>
+
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>POST Example</title>
+
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.0.min.js"></script>
+    <script>
+        $(function(){
+            $("button").click(function(){
+                var name = $("#name").val();
+                var age = $("#age").val();
+                var jsonString = JSON.stringify({"name":name, "age":age});
+
+                $.ajax({
+                    type: 'POST',
+                    url: 'http://localhost:8080/example',
+                    data: jsonString,
+                    contentType: "application/json; charset=utf-8",
+                    processData: false,
+                    success: function () {
+                        alert("party hard");
+                    },
+                    error: function () {
+                        alert("shit happens");
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <header class="w3-container w3-teal">
+        <h1>POST Example</h1>
+    </header>
+
+    <div class="w3-container w3-half w3-margin-top">
+
+        <form class="w3-container w3-card-4">
+
+            <p/>
+            <input id="name" class="w3-input" type="text"/>
+            <label>Name</label>
+
+            <p/>
+            <input id="age" class="w3-input" type="number"/>
+            <label>Age</label>
+
+            <p/>
+        </form>
+        <p/>
+
+        <button class="w3-btn w3-orange">POST to REST</button>
+    </div>
+</body>
+</html>
